@@ -16,7 +16,8 @@ public class DemoMover : MonoBehaviour
     [SerializeField] InputAction clickAction = new InputAction(type: InputActionType.Button);
     private void OnEnable() { clickAction.Enable(); }
     private void OnDisable() { clickAction.Disable(); }
-    void OnValidate() {
+    void OnValidate()
+    {
         // Provide default bindings for the input actions.
         // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
         if (clickAction.bindings.Count == 0)
@@ -25,14 +26,16 @@ public class DemoMover : MonoBehaviour
 
 
     private NavMeshAgent agent;
-    void Start() {
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
         //agent.Warp(target.position);
         agent.SetDestination(target.position);
         agent.isStopped = false;
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (clickAction.WasPressedThisFrame())
         {
             agent.SetDestination(target.position);

@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class CharacterKeyboardMoverWithNavigation : MonoBehaviour {
+public class CharacterKeyboardMoverWithNavigation : MonoBehaviour
+{
     [Tooltip("Speed of player keyboard-movement, in meters/second")]
     [SerializeField] float speed = 3.5f;
     [SerializeField] float gravity = 9.81f;
@@ -32,7 +32,7 @@ public class CharacterKeyboardMoverWithNavigation : MonoBehaviour {
     void Start()
     {
         cc = GetComponent<CharacterController>();
-            
+
     }
 
     [SerializeField]
@@ -60,7 +60,8 @@ public class CharacterKeyboardMoverWithNavigation : MonoBehaviour {
                 velocity.z = movement.y * speed;
                 velocity = transform.TransformDirection(velocity); // Move in the direction you look:
                 velocity.y = standingSpeed;
-            } else
+            }
+            else
             {
                 velocity.y -= gravity * Time.deltaTime;
             }

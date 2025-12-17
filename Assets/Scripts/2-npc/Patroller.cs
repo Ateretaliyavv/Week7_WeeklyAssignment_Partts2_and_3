@@ -7,7 +7,8 @@ using UnityEngine.AI;
  * The targets are all the objects with a Target component inside a given folder.
  */
 [RequireComponent(typeof(NavMeshAgent))]
-public class Patroller: MonoBehaviour {
+public class Patroller : MonoBehaviour
+{
     [Tooltip("Minimum time to wait at target between running to the next target")]
     [SerializeField] private float minWaitAtTarget = 3f;
 
@@ -27,7 +28,8 @@ public class Patroller: MonoBehaviour {
     private Animator animator;
     private float rotationSpeed = 5f;
 
-    private void Start() {
+    private void Start()
+    {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
@@ -36,7 +38,8 @@ public class Patroller: MonoBehaviour {
         SelectNewTarget();
     }
 
-    private void SelectNewTarget() {
+    private void SelectNewTarget()
+    {
         currentTarget = allTargets[Random.Range(0, allTargets.Length - 1)];
         Debug.Log("New target: " + currentTarget.name);
         navMeshAgent.SetDestination(currentTarget.transform.position);
@@ -45,10 +48,14 @@ public class Patroller: MonoBehaviour {
     }
 
 
-    private void Update() {
-        if (navMeshAgent.hasPath) {
+    private void Update()
+    {
+        if (navMeshAgent.hasPath)
+        {
             FaceDestination();
-        } else {   // we are at the target
+        }
+        else
+        {   // we are at the target
             //if (animator) animator.SetBool("Run", false);
             timeToWaitAtTarget -= Time.deltaTime;
             if (timeToWaitAtTarget <= 0)
@@ -56,7 +63,8 @@ public class Patroller: MonoBehaviour {
         }
     }
 
-    private void FaceDestination() {
+    private void FaceDestination()
+    {
         Vector3 directionToDestination = (navMeshAgent.destination - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToDestination.x, 0, directionToDestination.z));
         //transform.rotation = lookRotation; // Immediate rotation

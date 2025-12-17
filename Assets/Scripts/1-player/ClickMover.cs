@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
  * NOTE: To use this componenet, the CharacterController components should be disabled.
  */
 [RequireComponent(typeof(NavMeshAgent))]
-public class ClickMover : MonoBehaviour {
+public class ClickMover : MonoBehaviour
+{
     [SerializeField] bool drawRayForDebug = true;
     [SerializeField] float rayLength = 100f;
     [SerializeField] float rayDuration = 1f;
@@ -17,15 +18,18 @@ public class ClickMover : MonoBehaviour {
 
     [SerializeField] InputAction moveTo = new InputAction(type: InputActionType.Button);
     [SerializeField] InputAction moveToLocation = new InputAction(type: InputActionType.Value, expectedControlType: "Vector2");
-    void OnEnable() {
+    void OnEnable()
+    {
         moveTo.Enable();
         moveToLocation.Enable();
     }
-    void OnDisable() {
+    void OnDisable()
+    {
         moveTo.Disable();
         moveToLocation.Disable();
     }
-    void OnValidate() {
+    void OnValidate()
+    {
         // Provide default bindings for the input actions. Based on  https://gamedev.stackexchange.com/a/205345/18261
         if (moveTo.bindings.Count == 0)
             moveTo.AddBinding("<Mouse>/leftButton");
@@ -36,22 +40,26 @@ public class ClickMover : MonoBehaviour {
 
 
     private NavMeshAgent agent;
-    void Start() {
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update() {
-        if (moveTo.WasPerformedThisFrame()) {
+    void Update()
+    {
+        if (moveTo.WasPerformedThisFrame())
+        {
             Vector2 mousePositionInScreenCoordinates = moveToLocation.ReadValue<Vector2>();
             // Debug.Log("moving to screen coordinates: " + mousePositionInScreenCoordinates);
             Ray rayFromCameraToClickPosition = Camera.main.ScreenPointToRay(mousePositionInScreenCoordinates);
-            
+
             if (drawRayForDebug)
                 Debug.DrawRay(rayFromCameraToClickPosition.origin, rayFromCameraToClickPosition.direction * rayLength, rayColor, rayDuration);
-            
+
             RaycastHit hitInfo;
             bool hasHit = Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
-            if (hasHit) {
+            if (hasHit)
+            {
                 agent.SetDestination(hitInfo.point);
                 //agent.destination = hitInfo.point;
             }

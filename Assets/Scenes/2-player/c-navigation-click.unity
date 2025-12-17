@@ -903,7 +903,17 @@ MonoBehaviour:
   player: {fileID: 637089422}
   desiredDistance: 15
   distanceCorrectionSpeed: 6
+  gravity: 9.81
   orbitDegreesPerSecond: 390
+  defaultSlopeLimit: 30
+  climbingSlopeLimit: 80
+  heightThreshold: 0
+  defaultStepOffset: 0.3
+  climbingStepOffset: 2
+  raycastOriginOffset: 50
+  raycastMaxDistance: 200
+  checkInterval: 0.5
+  minMoveDistance: 0.1
 --- !u!143 &1343004426
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1017,7 +1027,7 @@ Transform:
   m_GameObject: {fileID: 1343004424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 220.27, y: 16.64, z: 120.47}
+  m_LocalPosition: {x: 220.27, y: 16.468, z: 120.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1658,7 +1668,7 @@ Transform:
   m_GameObject: {fileID: 1819660046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: -0.36}
+  m_LocalPosition: {x: 0, y: 0.415, z: -0.368}
   m_LocalScale: {x: 1, y: 0.2685, z: 0.23}
   m_ConstrainProportionsScale: 0
   m_Children: []
