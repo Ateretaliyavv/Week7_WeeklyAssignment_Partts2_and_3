@@ -8,7 +8,7 @@ public class EnemyOrbit : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Chase")]
-    [SerializeField] private float updatePathEvery = 0.15f; // כל כמה זמן לעדכן יעד
+    [SerializeField] private float updatePathEvery = 0.15f; // Frequency of path updates
 
     [Header("Shooting Control")]
     [Tooltip("When enemy is within this distance, it will stop moving (so it can shoot).")]
@@ -28,12 +28,12 @@ public class EnemyOrbit : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        // בתוך רדיוס ירי: עצירה (הירי עצמו נשאר בסקריפט שלך EnemyShooterRayCast)
+        //In shooting radius: stop and look at player
         if (dist <= stopToShootRadius)
         {
             if (!agent.isStopped) agent.isStopped = true;
 
-            // להסתכל על השחקן
+            // Look at player
             Vector3 look = player.position - transform.position;
             look.y = 0f;
             if (look.sqrMagnitude > 0.001f)
@@ -42,7 +42,7 @@ public class EnemyOrbit : MonoBehaviour
             return;
         }
 
-        // מחוץ לרדיוס ירי: ממשיך לרדוף חכם
+        // Out of shooting radius: chase player
         if (agent.isStopped) agent.isStopped = false;
 
         timer += Time.deltaTime;

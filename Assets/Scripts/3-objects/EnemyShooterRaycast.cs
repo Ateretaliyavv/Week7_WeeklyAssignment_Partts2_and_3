@@ -44,13 +44,13 @@ public class EnemyShooterRaycast : MonoBehaviour
         Vector3 targetPos = new Vector3(player.position.x, firePoint.position.y, player.position.z);
         Vector3 direction = (targetPos - firePoint.position).normalized;
 
-        // אפקט ויזואלי
+        // Visual effect
         if (bulletVisualPrefab != null)
         {
             Instantiate(bulletVisualPrefab, firePoint.position, Quaternion.LookRotation(direction));
         }
 
-        // Raycast אמיתי + דיבאג
+        // Real raycast + Damage Application
         if (Physics.Raycast(
                 firePoint.position,
                 direction,
@@ -61,7 +61,7 @@ public class EnemyShooterRaycast : MonoBehaviour
         {
             Debug.Log("Ray hit: " + hit.collider.name);
 
-            // במקום להסתמך על Tag, בודקים האם זה שייך לשחקן ע"י PlayerHealth בהורה
+            // Check if we hit the player
             PlayerHealth hp = hit.collider.GetComponentInParent<PlayerHealth>();
             if (hp != null)
             {

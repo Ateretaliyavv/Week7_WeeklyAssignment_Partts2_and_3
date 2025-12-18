@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= dmg;
 
-        // מוודאים שהחיים לא יורדים מתחת לאפס
+        // Be sure health doesn't go below zero
         if (currentHealth < 0) currentHealth = 0;
 
         Debug.Log("Player hit! HP = " + currentHealth);
@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText != null)
         {
-            // שימוש במשתנה במקום לכתוב "Health: " ידנית
+            // Update health display
             healthText.text = healthPrefixText + currentHealth;
         }
     }
@@ -61,8 +61,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (healthText != null)
         {
-            healthText.text = gameOverText; // שימוש במשתנה
-            healthText.color = gameOverColor; // שימוש במשתנה
+            healthText.text = gameOverText; // Usage of variable
+            healthText.color = gameOverColor; // Usage of variable
         }
     }
 }
